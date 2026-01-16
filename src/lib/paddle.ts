@@ -15,10 +15,13 @@ export async function getPaddle(): Promise<Paddle | null> {
     return null
   }
 
+  // Detect environment from token prefix (live_ = production, test_ = sandbox)
+  const environment = token.startsWith("live_") ? "production" : "sandbox"
+
   try {
     const instance = await initializePaddle({
       token,
-      environment: import.meta.env.DEV ? "sandbox" : "production",
+      environment,
     })
     paddleInstance = instance ?? null
     return paddleInstance
