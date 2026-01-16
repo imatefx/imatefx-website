@@ -12,6 +12,7 @@ import TypesenseExporterPage from "@/pages/products/TypesenseExporterPage"
 import NordVPNGUIPage from "@/pages/products/NordVPNGUIPage"
 import AutoFileBackupPage from "@/pages/products/AutoFileBackupPage"
 import NotFoundPage from "@/pages/NotFoundPage"
+import ThankYouPage from "@/pages/ThankYouPage"
 
 export const router = createBrowserRouter([
   {
@@ -29,6 +30,7 @@ export const router = createBrowserRouter([
       { path: "terms", element: <TermsPage /> },
       { path: "privacy", element: <PrivacyPage /> },
       { path: "refund", element: <RefundPage /> },
+      { path: "thank-you", element: <ThankYouPage /> },
       { path: "*", element: <NotFoundPage /> },
     ],
   },

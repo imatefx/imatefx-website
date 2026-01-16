@@ -30,6 +30,7 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
+import { usePaddle } from "@/hooks/usePaddle"
 import type { Product } from "@/data/products"
 
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
@@ -62,40 +63,63 @@ interface ProductPageTemplateProps {
 }
 
 export function ProductPageTemplate({ product, children }: ProductPageTemplateProps) {
+  const { loading, error, openCheckout } = usePaddle()
+
+  const handlePurchase = () => {
+    if (product.price?.paddleProductId) {
+      openCheckout(product.price.paddleProductId)
+    }
+  }
+
   return (
-    <div className="py-12">
-      <div className="container px-4 md:px-6">
+    <div className="relative py-20">
+      {/* Background elements */}
+      <div className="absolute inset-0 -z-10">
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
+        <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 left-1/3 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
+      </div>
+
+      <div className="container max-w-6xl mx-auto px-4">
         {/* Back link */}
         <Link
           to="/products"
-          className="inline-flex items-center text-sm text-muted-foreground hover:text-foreground mb-8"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-muted/80 border border-border/50 text-sm text-muted-foreground hover:text-foreground hover:border-primary/30 transition-all mb-8"
         >
-          <ArrowLeft className="mr-2 h-4 w-4" />
+          <ArrowLeft className="h-4 w-4" />
           Back to Products
         </Link>
 
         {/* Hero section */}
         <div className="grid gap-12 lg:grid-cols-2 mb-16">
           <div className="space-y-6">
-            <div className="flex items-center gap-3">
-              <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl">
-                {product.name}
-              </h1>
+            <div className="space-y-2">
               <Badge
                 variant={product.type === "commercial" ? "default" : "secondary"}
-                className="text-sm"
+                className={
+                  product.type === "commercial"
+                    ? "bg-gradient-to-r from-primary to-primary/80"
+                    : "bg-muted/80 border-border/50"
+                }
               >
                 {product.type === "commercial"
                   ? `$${product.price?.amount}`
                   : "Open Source"}
               </Badge>
+              <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
+                {product.name}
+              </h1>
             </div>
 
-            <p className="text-xl text-muted-foreground">{product.tagline}</p>
+            <p className="text-xl text-muted-foreground leading-relaxed">{product.tagline}</p>
 
             <div className="flex flex-wrap gap-2">
               {product.techStack.map((tech) => (
-                <Badge key={tech} variant="outline">
+                <Badge
+                  key={tech}
+                  variant="outline"
+                  className="bg-muted/50 border-border/50 hover:border-primary/30 transition-colors"
+                >
                   {tech}
                 </Badge>
               ))}
@@ -103,11 +127,21 @@ export function ProductPageTemplate({ product, children }: ProductPageTemplatePr
 
             <div className="flex flex-wrap gap-3">
               {product.type === "commercial" && (
-                <Button asChild size="lg">
-                  <Link to="/pricing">
-                    <Download className="mr-2 h-4 w-4" />
-                    Buy Now - ${product.price?.amount}
-                  </Link>
+                <Button
+                  size="lg"
+                  onClick={handlePurchase}
+                  disabled={loading || !!error}
+                >
+                  {loading ? (
+                    "Loading..."
+                  ) : error ? (
+                    "Coming Soon"
+                  ) : (
+                    <>
+                      <Download className="mr-2 h-4 w-4" />
+                      Buy Now - ${product.price?.amount}
+                    </>
+                  )}
                 </Button>
               )}
               {product.githubUrl && (
@@ -142,8 +176,25 @@ export function ProductPageTemplate({ product, children }: ProductPageTemplatePr
           </div>
 
           {/* Screenshot placeholder */}
-          <div className="relative aspect-video bg-muted rounded-lg flex items-center justify-center border">
-            <span className="text-muted-foreground">Screenshot</span>
+          <div className="relative aspect-video rounded-xl overflow-hidden border border-border/50 bg-gradient-to-br from-muted to-muted/50">
+            <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-primary/5" />
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="text-center space-y-2">
+                <Monitor className="h-12 w-12 text-primary/30 mx-auto" />
+                <span className="text-sm text-muted-foreground">Screenshot coming soon</span>
+              </div>
+            </div>
+            {/* Decorative grid */}
+            <div
+              className="absolute inset-0 opacity-30"
+              style={{
+                backgroundImage: `
+                  linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                  linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)
+                `,
+                backgroundSize: '20px 20px',
+              }}
+            />
           </div>
         </div>
 
@@ -159,24 +210,30 @@ export function ProductPageTemplate({ product, children }: ProductPageTemplatePr
           </div>
         </div>
 
-        <Separator className="mb-16" />
+        <Separator className="mb-16 bg-border/40" />
 
         {/* Features */}
         <div className="mb-16">
-          <h2 className="text-2xl font-bold mb-8 text-center">Features</h2>
+          <div className="text-center mb-10">
+            <h2 className="text-3xl font-bold tracking-tight">Features</h2>
+            <p className="text-muted-foreground mt-2">Everything you need, nothing you don't</p>
+          </div>
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {product.features.map((feature) => {
               const IconComponent = iconMap[feature.icon] || Zap
               return (
-                <Card key={feature.title}>
+                <Card
+                  key={feature.title}
+                  className="group border-border/50 bg-gradient-to-b from-card to-card/80 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300"
+                >
                   <CardContent className="pt-6">
                     <div className="flex items-start gap-4">
-                      <div className="p-2 bg-primary/10 rounded-lg">
-                        <IconComponent className="h-6 w-6 text-primary" />
+                      <div className="p-2.5 bg-primary/10 rounded-lg group-hover:bg-primary/20 transition-colors">
+                        <IconComponent className="h-5 w-5 text-primary" />
                       </div>
                       <div>
-                        <h3 className="font-semibold mb-1">{feature.title}</h3>
-                        <p className="text-sm text-muted-foreground">
+                        <h3 className="font-semibold mb-1 group-hover:text-primary transition-colors">{feature.title}</h3>
+                        <p className="text-sm text-muted-foreground leading-relaxed">
                           {feature.description}
                         </p>
                       </div>

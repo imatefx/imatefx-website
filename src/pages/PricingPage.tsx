@@ -78,8 +78,34 @@ export default function PricingPage() {
 
   return (
     <div className="relative py-20">
-      {/* Background */}
-      <div className="absolute inset-0 -z-10">
+      {/* Grid pattern - light mode */}
+      <div
+        className="pointer-events-none absolute inset-0 -z-10 dark:hidden"
+        style={{
+          backgroundImage: `
+            linear-gradient(rgba(0, 0, 0, 0.04) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(0, 0, 0, 0.04) 1px, transparent 1px)
+          `,
+          backgroundSize: '48px 48px',
+          maskImage: 'linear-gradient(to bottom, black 0%, transparent 50%)',
+          WebkitMaskImage: 'linear-gradient(to bottom, black 0%, transparent 50%)',
+        }}
+      />
+      {/* Grid pattern - dark mode */}
+      <div
+        className="pointer-events-none absolute inset-0 -z-10 hidden dark:block"
+        style={{
+          backgroundImage: `
+            linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px)
+          `,
+          backgroundSize: '48px 48px',
+          maskImage: 'linear-gradient(to bottom, black 0%, transparent 50%)',
+          WebkitMaskImage: 'linear-gradient(to bottom, black 0%, transparent 50%)',
+        }}
+      />
+      {/* Gradient blurs */}
+      <div className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
         <div className="absolute bottom-1/3 right-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
       </div>

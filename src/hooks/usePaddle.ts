@@ -1,51 +1,46 @@
-import { useEffect, useState, useCallback } from "react"
-import { initializePaddle, type Paddle } from "@paddle/paddle-js"
+import { useCallback, useEffect, useState } from "react"
+import type { Paddle } from "@paddle/paddle-js"
+import { getPaddle, openCheckout } from "@/lib/paddle"
 
 export function usePaddle() {
   const [paddle, setPaddle] = useState<Paddle | null>(null)
   const [loading, setLoading] = useState(true)
-  const [error, setError] = useState<Error | null>(null)
+  const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
-    const clientToken = import.meta.env.VITE_PADDLE_CLIENT_TOKEN
+    let mounted = true
 
-    if (!clientToken) {
-      setLoading(false)
-      setError(new Error("Paddle client token not configured"))
-      return
+    async function init() {
+      try {
+        const instance = await getPaddle()
+        if (mounted) {
+          setPaddle(instance)
+          setLoading(false)
+        }
+      } catch (err) {
+        if (mounted) {
+          setError(err instanceof Error ? err.message : "Failed to initialize Paddle")
+          setLoading(false)
+        }
+      }
     }
 
-    initializePaddle({
-      environment:
-        import.meta.env.VITE_PADDLE_ENVIRONMENT === "production"
-          ? "production"
-          : "sandbox",
-      token: clientToken,
-    })
-      .then((paddleInstance) => {
-        if (paddleInstance) {
-          setPaddle(paddleInstance)
-        } else {
-          setError(new Error("Failed to initialize Paddle"))
-        }
-      })
-      .catch(setError)
-      .finally(() => setLoading(false))
+    init()
+
+    return () => {
+      mounted = false
+    }
   }, [])
 
-  const openCheckout = useCallback(
-    (priceId: string) => {
-      if (!paddle) {
-        console.error("Paddle not initialized")
-        return
-      }
+  const handleCheckout = useCallback(async (priceId: string, email?: string) => {
+    await openCheckout({ priceId, email })
+  }, [])
 
-      paddle.Checkout.open({
-        items: [{ priceId, quantity: 1 }],
-      })
-    },
-    [paddle]
-  )
-
-  return { paddle, loading, error, openCheckout }
+  return {
+    paddle,
+    loading,
+    error,
+    openCheckout: handleCheckout,
+    isReady: !!paddle && !loading,
+  }
 }

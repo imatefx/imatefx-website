@@ -47,7 +47,7 @@ No cloud uploads. No monthly fees. No AI training on your photos. Just a fast, n
     price: {
       amount: 29,
       currency: "USD",
-      paddleProductId: "pri_xxxxxxxxxxxxx",
+      paddleProductId: "pri_01kf4h9dhet0x3agdwxt9ybjde",
     },
     techStack: ["Rust", "Tauri", "TypeScript", "React"],
     features: [

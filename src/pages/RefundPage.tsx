@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import { ArrowLeft, Check } from "lucide-react"
+import { ArrowLeft, Check, RefreshCcw } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 import { siteConfig } from "@/data/site"
 
@@ -7,26 +7,41 @@ export default function RefundPage() {
   const lastUpdated = "January 2026"
 
   return (
-    <div className="py-12">
-      <div className="container px-4 md:px-6 max-w-3xl">
+    <div className="relative py-20">
+      {/* Background elements */}
+      <div className="absolute inset-0 -z-10">
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
+        <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 left-1/3 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
+      </div>
+
+      <div className="container px-4 md:px-6 max-w-3xl mx-auto">
         <Link
           to="/"
-          className="inline-flex items-center text-sm text-muted-foreground hover:text-foreground mb-8"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-muted/80 border border-border/50 text-sm text-muted-foreground hover:text-foreground hover:border-primary/30 transition-all mb-8"
         >
-          <ArrowLeft className="mr-2 h-4 w-4" />
+          <ArrowLeft className="h-4 w-4" />
           Back to Home
         </Link>
 
-        <h1 className="text-4xl font-bold tracking-tighter mb-4">
-          Refund Policy
-        </h1>
-        <p className="text-muted-foreground mb-8">Last updated: {lastUpdated}</p>
+        <div className="space-y-4 mb-10">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-sm font-medium text-primary">
+            <RefreshCcw className="h-4 w-4" />
+            Refunds
+          </div>
+          <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
+            Refund Policy
+          </h1>
+          <p className="text-muted-foreground">Last updated: {lastUpdated}</p>
+        </div>
 
         {/* Highlight box */}
-        <Card className="mb-8 bg-green-500/10 border-green-500/20">
+        <Card className="mb-10 bg-green-500/10 border-green-500/20">
           <CardContent className="pt-6">
             <div className="flex items-start gap-4">
-              <Check className="h-6 w-6 text-green-500 shrink-0 mt-1" />
+              <div className="p-2 rounded-lg bg-green-500/20">
+                <Check className="h-5 w-5 text-green-500" />
+              </div>
               <div>
                 <h2 className="font-semibold text-lg mb-2">
                   14-Day Money-Back Guarantee
@@ -41,7 +56,7 @@ export default function RefundPage() {
           </CardContent>
         </Card>
 
-        <div className="prose prose-neutral dark:prose-invert max-w-none">
+        <div className="prose prose-neutral dark:prose-invert max-w-none prose-headings:font-semibold prose-headings:tracking-tight prose-a:text-primary prose-a:no-underline hover:prose-a:underline">
           <h2>Eligibility for Refund</h2>
           <p>You are eligible for a full refund if:</p>
           <ul>
