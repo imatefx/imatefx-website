@@ -69,8 +69,8 @@ export function Hero() {
               </span>
             </h1>
             <p className="mx-auto max-w-[700px] text-lg text-muted-foreground md:text-xl leading-relaxed">
-              Software developer crafting high-performance desktop applications
-              and developer tools with{" "}
+              Engineering Manager & Architect with 13+ years crafting scalable
+              cloud solutions and high-performance applications with{" "}
               <span className="font-semibold text-foreground">Rust</span>,{" "}
               <span className="font-semibold text-foreground">TypeScript</span>,
               and modern frameworks.

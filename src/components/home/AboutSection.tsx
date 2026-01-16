@@ -21,18 +21,19 @@ export function AboutSection() {
 
             <div className="space-y-4 text-muted-foreground leading-relaxed">
               <p>
-                I'm a software developer passionate about building efficient,
-                user-friendly applications. With expertise in{" "}
-                <span className="font-medium text-foreground">Rust</span>,{" "}
-                <span className="font-medium text-foreground">TypeScript</span>,
-                and modern web technologies, I focus on creating tools that make
-                developers' and users' lives easier.
+                Engineering Manager and Software Architect with{" "}
+                <span className="font-medium text-foreground">13+ years</span>{" "}
+                of experience building scalable, cost-effective cloud solutions.
+                Proven leadership in driving{" "}
+                <span className="font-medium text-foreground">AI/ML integration</span>,
+                streamlining development, and consistently delivering complex
+                projects ahead of schedule.
               </p>
               <p>
-                My work spans from TUI utilities and desktop applications to
-                monitoring tools and automation scripts. I believe in writing
-                clean, maintainable code and shipping products that people
-                actually want to use.
+                From TUI utilities and desktop applications to enterprise microservices
+                and data pipelines, I focus on building tools that solve real problems.
+                Active open-source contributor with projects featured in official
+                documentation (Typesense) and contributions to GNOME.
               </p>
             </div>
 
@@ -112,13 +113,13 @@ export function AboutSection() {
               </Card>
               <Card className="border-border/50 bg-gradient-to-br from-card to-card/80">
                 <CardContent className="pt-6 text-center">
-                  <div className="text-3xl font-bold text-primary">5+</div>
-                  <div className="text-sm text-muted-foreground">Years Coding</div>
+                  <div className="text-3xl font-bold text-primary">13+</div>
+                  <div className="text-sm text-muted-foreground">Years Exp</div>
                 </CardContent>
               </Card>
               <Card className="border-border/50 bg-gradient-to-br from-card to-card/80">
                 <CardContent className="pt-6 text-center">
-                  <div className="text-3xl font-bold text-primary">7</div>
+                  <div className="text-3xl font-bold text-primary">10+</div>
                   <div className="text-sm text-muted-foreground">Languages</div>
                 </CardContent>
               </Card>

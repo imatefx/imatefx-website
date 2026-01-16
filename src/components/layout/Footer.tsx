@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import { Github, Linkedin, Mail, Heart } from "lucide-react"
+import { Github, Linkedin, Mail, Heart, Twitter } from "lucide-react"
 import { footerNav } from "@/data/navigation"
 import { siteConfig } from "@/data/site"
 import { Separator } from "@/components/ui/separator"
@@ -43,6 +43,14 @@ export function Footer() {
                 className="p-2 rounded-lg bg-muted/80 text-muted-foreground hover:bg-primary/10 hover:text-primary transition-all"
               >
                 <Linkedin className="h-5 w-5" />
+              </a>
+              <a
+                href={siteConfig.links.twitter}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 rounded-lg bg-muted/80 text-muted-foreground hover:bg-primary/10 hover:text-primary transition-all"
+              >
+                <Twitter className="h-5 w-5" />
               </a>
               <a
                 href={siteConfig.links.email}
