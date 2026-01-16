@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import { ArrowRight, Github, ExternalLink } from "lucide-react"
+import { ArrowRight, Github } from "lucide-react"
 import {
   Card,
   CardContent,
