@@ -2,6 +2,7 @@ import { Link } from "react-router-dom"
 import { ArrowRight, Github, Sparkles } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { siteConfig } from "@/data/site"
+import { skillIcons } from "@/data/skillIcons"
 
 export function Hero() {
   return (
@@ -102,17 +103,21 @@ export function Hero() {
 
           {/* Skills badges */}
           <div className="flex flex-wrap justify-center gap-3 pt-8">
-            {siteConfig.skills.map((skill, index) => (
-              <span
-                key={skill}
-                className="px-4 py-2 text-sm font-medium rounded-full bg-gradient-to-r from-muted to-muted/80 border border-border/50 hover:border-primary/30 transition-colors cursor-default"
-                style={{
-                  animationDelay: `${index * 100}ms`,
-                }}
-              >
-                {skill}
-              </span>
-            ))}
+            {siteConfig.skills.map((skill, index) => {
+              const Icon = skillIcons[skill]
+              return (
+                <span
+                  key={skill}
+                  className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-full bg-gradient-to-r from-muted to-muted/80 border border-border/50 hover:border-primary/30 transition-colors cursor-default"
+                  style={{
+                    animationDelay: `${index * 100}ms`,
+                  }}
+                >
+                  {Icon && <Icon className="h-4 w-4" />}
+                  {skill}
+                </span>
+              )
+            })}
           </div>
         </div>
       </div>

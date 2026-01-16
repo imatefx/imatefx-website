@@ -2,6 +2,7 @@ import { MapPin, Mail, Award, User, Code2 } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { siteConfig } from "@/data/site"
+import { skillIcons } from "@/data/skillIcons"
 
 export function AboutSection() {
   return (
@@ -90,15 +91,19 @@ export function AboutSection() {
                   <h3 className="font-semibold text-lg">Tech Stack</h3>
                 </div>
                 <div className="flex flex-wrap gap-2">
-                  {siteConfig.skills.map((skill) => (
-                    <Badge
-                      key={skill}
-                      variant="outline"
-                      className="bg-muted/50 border-border/50 hover:bg-muted hover:border-primary/30 transition-colors"
-                    >
-                      {skill}
-                    </Badge>
-                  ))}
+                  {siteConfig.skills.map((skill) => {
+                    const Icon = skillIcons[skill]
+                    return (
+                      <Badge
+                        key={skill}
+                        variant="outline"
+                        className="inline-flex items-center gap-1.5 bg-muted/50 border-border/50 hover:bg-muted hover:border-primary/30 transition-colors"
+                      >
+                        {Icon && <Icon className="h-3.5 w-3.5" />}
+                        {skill}
+                      </Badge>
+                    )
+                  })}
                 </div>
               </CardContent>
             </Card>
