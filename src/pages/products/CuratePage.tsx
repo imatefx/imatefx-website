@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react"
 import { Link } from "react-router-dom"
 import { Check } from "lucide-react"
 import { ProductPageTemplate } from "@/components/products/ProductPageTemplate"
@@ -21,6 +22,17 @@ const supportedFormats = {
 
 export default function CuratePage() {
   const product = getProductBySlug("curate")
+  const paymentButtonRef = useRef<HTMLFormElement>(null)
+
+  useEffect(() => {
+    if (paymentButtonRef.current && !paymentButtonRef.current.querySelector("script")) {
+      const script = document.createElement("script")
+      script.src = "https://checkout.razorpay.com/v1/payment-button.js"
+      script.setAttribute("data-payment_button_id", "pl_S5HtStRX6M7aoJ")
+      script.async = true
+      paymentButtonRef.current.appendChild(script)
+    }
+  }, [])
 
   if (!product) {
     return <div>Product not found</div>
@@ -93,8 +105,9 @@ export default function CuratePage() {
           One-time purchase of $29. Lifetime license with all future updates
           included. No subscription required.
         </p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button asChild size="lg">
+        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <form ref={paymentButtonRef}></form>
+          <Button asChild size="lg" variant="outline">
             <Link to="/pricing">View Pricing</Link>
           </Button>
         </div>
