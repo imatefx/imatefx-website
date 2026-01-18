@@ -84,15 +84,14 @@ export default function TermsPage() {
 
           <h2>4. Payment and Billing</h2>
           <p>
-            All payments are processed by Paddle.com, our authorized reseller.
-            Paddle handles all customer service inquiries and billing questions.
+            All payments are processed by Razorpay, our payment processor.
             By making a purchase, you also agree to{" "}
             <a
-              href="https://www.paddle.com/legal/terms"
+              href="https://razorpay.com/terms/"
               target="_blank"
               rel="noopener noreferrer"
             >
-              Paddle's Terms of Service
+              Razorpay's Terms of Service
             </a>
             .
           </p>

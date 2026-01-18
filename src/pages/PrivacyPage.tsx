@@ -79,22 +79,21 @@ export default function PrivacyPage() {
           <p>
             All purchases are processed by{" "}
             <a
-              href="https://www.paddle.com"
+              href="https://razorpay.com"
               target="_blank"
               rel="noopener noreferrer"
             >
-              Paddle.com
+              Razorpay
             </a>
-            , our authorized reseller and Merchant of Record. When you make a
-            purchase:
+            , our payment processor. When you make a purchase:
           </p>
           <ul>
             <li>
-              Paddle collects your payment information, email address, and billing
+              Razorpay collects your payment information, email address, and billing
               details
             </li>
             <li>
-              We receive your email address and order details from Paddle to
+              We receive your email address and order details from Razorpay to
               fulfill your license
             </li>
             <li>
@@ -104,11 +103,11 @@ export default function PrivacyPage() {
           <p>
             Please review{" "}
             <a
-              href="https://www.paddle.com/legal/privacy"
+              href="https://razorpay.com/privacy/"
               target="_blank"
               rel="noopener noreferrer"
             >
-              Paddle's Privacy Policy
+              Razorpay's Privacy Policy
             </a>{" "}
             for information on how they handle your data.
           </p>
@@ -126,7 +125,7 @@ export default function PrivacyPage() {
           <p>We do NOT sell, rent, or share your personal information with third parties, except:</p>
           <ul>
             <li>
-              <strong>Paddle:</strong> As our payment processor and reseller
+              <strong>Razorpay:</strong> As our payment processor
             </li>
             <li>
               <strong>Legal Requirements:</strong> If required by law or to protect

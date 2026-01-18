@@ -2,7 +2,6 @@ import { Link } from "react-router-dom"
 import {
   ArrowLeft,
   Github,
-  Download,
   ExternalLink,
   Camera,
   Eye,
@@ -30,7 +29,6 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
-import { usePaddle } from "@/hooks/usePaddle"
 import type { Product } from "@/data/products"
 
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
@@ -63,14 +61,6 @@ interface ProductPageTemplateProps {
 }
 
 export function ProductPageTemplate({ product, children }: ProductPageTemplateProps) {
-  const { loading, error, openCheckout } = usePaddle()
-
-  const handlePurchase = () => {
-    if (product.price?.paddleProductId) {
-      openCheckout(product.price.paddleProductId)
-    }
-  }
-
   return (
     <div className="relative py-20">
       {/* Background elements */}
@@ -126,24 +116,6 @@ export function ProductPageTemplate({ product, children }: ProductPageTemplatePr
             </div>
 
             <div className="flex flex-wrap gap-3">
-              {product.type === "commercial" && (
-                <Button
-                  size="lg"
-                  onClick={handlePurchase}
-                  disabled={loading || !!error}
-                >
-                  {loading ? (
-                    "Loading..."
-                  ) : error ? (
-                    "Coming Soon"
-                  ) : (
-                    <>
-                      <Download className="mr-2 h-4 w-4" />
-                      Buy Now - ${product.price?.amount}
-                    </>
-                  )}
-                </Button>
-              )}
               {product.githubUrl && (
                 <Button
                   variant={product.type === "commercial" ? "outline" : "default"}

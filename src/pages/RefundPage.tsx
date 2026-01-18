@@ -90,7 +90,7 @@ export default function RefundPage() {
 
           <h2>Refund Method</h2>
           <p>
-            Refunds are processed by Paddle, our payment processor, and will be
+            Refunds are processed by Razorpay, our payment processor, and will be
             issued to the original payment method used for the purchase.
           </p>
 

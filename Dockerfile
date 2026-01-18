@@ -3,12 +3,6 @@ FROM node:22-alpine AS builder
 
 WORKDIR /app
 
-# Build arguments for environment variables
-ARG VITE_PADDLE_CLIENT_TOKEN
-
-# Set environment variables for build
-ENV VITE_PADDLE_CLIENT_TOKEN=$VITE_PADDLE_CLIENT_TOKEN
-
 # Copy package files and npm config
 COPY package.json package-lock.json .npmrc ./
 

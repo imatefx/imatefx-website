@@ -25,7 +25,6 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion"
-import { usePaddle } from "@/hooks/usePaddle"
 import { getProductBySlug } from "@/data/products"
 
 const features = [
@@ -67,14 +66,7 @@ const faqs = [
 ]
 
 export default function PricingPage() {
-  const { loading, error, openCheckout } = usePaddle()
   const curate = getProductBySlug("curate")
-
-  const handlePurchase = () => {
-    if (curate?.price?.paddleProductId) {
-      openCheckout(curate.price.paddleProductId)
-    }
-  }
 
   return (
     <div className="relative py-20">
@@ -161,19 +153,12 @@ export default function PricingPage() {
               <Button
                 size="lg"
                 className="w-full h-12 text-base"
-                onClick={handlePurchase}
-                disabled={loading || !!error}
+                asChild
               >
-                {loading ? (
-                  "Loading..."
-                ) : error ? (
-                  "Coming Soon"
-                ) : (
-                  <>
-                    <Download className="mr-2 h-4 w-4" />
-                    Buy Now - $29
-                  </>
-                )}
+                <Link to="/products/curate">
+                  <Download className="mr-2 h-4 w-4" />
+                  Buy Now - $29
+                </Link>
               </Button>
               <p className="text-xs text-center text-muted-foreground">
                 14-day free trial available. No credit card required.
@@ -186,7 +171,7 @@ export default function PricingPage() {
         <div className="flex flex-wrap justify-center gap-6 mb-16">
           <div className="flex items-center gap-3 px-4 py-3 rounded-lg bg-muted/50 border border-border/50">
             <Shield className="h-5 w-5 text-primary" />
-            <span className="text-sm">Secure Payment via Paddle</span>
+            <span className="text-sm">Secure Payment</span>
           </div>
           <div className="flex items-center gap-3 px-4 py-3 rounded-lg bg-muted/50 border border-border/50">
             <RefreshCw className="h-5 w-5 text-primary" />
