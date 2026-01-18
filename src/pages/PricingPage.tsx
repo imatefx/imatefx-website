@@ -1,7 +1,7 @@
+import { useEffect, useRef } from "react"
 import { Link } from "react-router-dom"
 import {
   Check,
-  Download,
   Shield,
   RefreshCw,
   Monitor,
@@ -67,6 +67,17 @@ const faqs = [
 
 export default function PricingPage() {
   const curate = getProductBySlug("curate")
+  const paymentButtonRef = useRef<HTMLFormElement>(null)
+
+  useEffect(() => {
+    if (paymentButtonRef.current && !paymentButtonRef.current.querySelector("script")) {
+      const script = document.createElement("script")
+      script.src = "https://checkout.razorpay.com/v1/payment-button.js"
+      script.setAttribute("data-payment_button_id", "pl_S5HtStRX6M7aoJ")
+      script.async = true
+      paymentButtonRef.current.appendChild(script)
+    }
+  }, [])
 
   return (
     <div className="relative py-20">
@@ -150,16 +161,7 @@ export default function PricingPage() {
               </ul>
             </CardContent>
             <CardFooter className="flex flex-col gap-4">
-              <Button
-                size="lg"
-                className="w-full h-12 text-base"
-                asChild
-              >
-                <Link to="/products/curate">
-                  <Download className="mr-2 h-4 w-4" />
-                  Buy Now - $29
-                </Link>
-              </Button>
+              <form ref={paymentButtonRef} className="w-full flex justify-center"></form>
               <p className="text-xs text-center text-muted-foreground">
                 14-day free trial available. No credit card required.
               </p>
@@ -171,7 +173,7 @@ export default function PricingPage() {
         <div className="flex flex-wrap justify-center gap-6 mb-16">
           <div className="flex items-center gap-3 px-4 py-3 rounded-lg bg-muted/50 border border-border/50">
             <Shield className="h-5 w-5 text-primary" />
-            <span className="text-sm">Secure Payment</span>
+            <span className="text-sm">Secure Payment via Razorpay</span>
           </div>
           <div className="flex items-center gap-3 px-4 py-3 rounded-lg bg-muted/50 border border-border/50">
             <RefreshCw className="h-5 w-5 text-primary" />
