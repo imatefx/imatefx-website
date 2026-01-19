@@ -25,7 +25,6 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion"
-import { getProductBySlug } from "@/data/products"
 
 const features = [
   "Lifetime license - pay once, own forever",
@@ -66,7 +65,6 @@ const faqs = [
 ]
 
 export default function PricingPage() {
-  const curate = getProductBySlug("curate")
   const paymentButtonRef = useRef<HTMLFormElement>(null)
 
   useEffect(() => {
