@@ -3,6 +3,7 @@ import { Github, Linkedin, Mail, Heart, Twitter } from "lucide-react"
 import { footerNav } from "@/data/navigation"
 import { siteConfig } from "@/data/site"
 import { Separator } from "@/components/ui/separator"
+import { version } from "../../../package.json"
 
 export function Footer() {
   return (
@@ -15,11 +16,7 @@ export function Footer() {
           {/* Brand */}
           <div className="col-span-2 md:col-span-1 space-y-4">
             <Link to="/" className="flex items-center space-x-2 group">
-              <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-primary to-primary/60 flex items-center justify-center">
-                <span className="text-primary-foreground font-bold text-sm">
-                  ix
-                </span>
-              </div>
+              <img src="/favicon.svg" alt="imatefx logo" className="h-8 w-8 rounded-lg" />
               <span className="text-xl font-bold group-hover:text-primary transition-colors">
                 {siteConfig.handle}
               </span>
@@ -125,6 +122,7 @@ export function Footer() {
             Built with <Heart className="h-4 w-4 text-red-500 fill-red-500" />{" "}
             using React, Tailwind CSS & shadcn/ui
           </p>
+          <p>v{version}</p>
         </div>
       </div>
     </footer>
