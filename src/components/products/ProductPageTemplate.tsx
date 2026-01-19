@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react"
 import { Link } from "react-router-dom"
 import {
   ArrowLeft,
@@ -61,6 +62,18 @@ interface ProductPageTemplateProps {
 }
 
 export function ProductPageTemplate({ product, children }: ProductPageTemplateProps) {
+  const paymentButtonRef = useRef<HTMLFormElement>(null)
+
+  useEffect(() => {
+    if (product.type === "commercial" && paymentButtonRef.current && !paymentButtonRef.current.querySelector("script")) {
+      const script = document.createElement("script")
+      script.src = "https://checkout.razorpay.com/v1/payment-button.js"
+      script.setAttribute("data-payment_button_id", "pl_S5HtStRX6M7aoJ")
+      script.async = true
+      paymentButtonRef.current.appendChild(script)
+    }
+  }, [product.type])
+
   return (
     <div className="relative py-20">
       {/* Background elements */}
@@ -115,7 +128,10 @@ export function ProductPageTemplate({ product, children }: ProductPageTemplatePr
               ))}
             </div>
 
-            <div className="flex flex-wrap gap-3">
+            <div className="flex flex-wrap gap-3 items-center">
+              {product.type === "commercial" && (
+                <form ref={paymentButtonRef}></form>
+              )}
               {product.githubUrl && (
                 <Button
                   variant={product.type === "commercial" ? "outline" : "default"}
