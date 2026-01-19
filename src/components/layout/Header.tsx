@@ -21,9 +21,7 @@ export function Header() {
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/80 backdrop-blur-xl">
       <div className="container flex h-16 items-center justify-between max-w-6xl mx-auto px-4">
         <Link to="/" className="flex items-center space-x-2 group">
-          <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-primary to-primary/60 flex items-center justify-center">
-            <span className="text-primary-foreground font-bold text-sm">ix</span>
-          </div>
+          <img src="/favicon.svg" alt="imatefx logo" className="h-8 w-8 rounded-lg" />
           <span className="text-xl font-bold group-hover:text-primary transition-colors">
             {siteConfig.handle}
           </span>
