@@ -47,7 +47,7 @@ No cloud uploads. No monthly fees. No AI training on your photos. Just a fast, n
       amount: 2999,
       currency: "INR",
     },
-    techStack: ["Rust", "Tauri", "TypeScript", "React"],
+    techStack: ["Rust"],
     features: [
       {
         title: "EXIF-Powered",
