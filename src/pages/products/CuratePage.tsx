@@ -102,7 +102,7 @@ export default function CuratePage() {
       <div className="text-center bg-muted/50 rounded-lg p-8">
         <h2 className="text-2xl font-bold mb-4">Ready to organize your media?</h2>
         <p className="text-muted-foreground mb-6 max-w-lg mx-auto">
-          One-time purchase of $29. Lifetime license with all future updates
+          One-time purchase of ₹2999. Lifetime license with all future updates
           included. No subscription required.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">

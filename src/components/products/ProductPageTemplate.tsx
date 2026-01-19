@@ -93,7 +93,7 @@ export function ProductPageTemplate({ product, children }: ProductPageTemplatePr
                 }
               >
                 {product.type === "commercial"
-                  ? `$${product.price?.amount}`
+                  ? `₹${product.price?.amount}`
                   : "Open Source"}
               </Badge>
               <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">

@@ -44,8 +44,8 @@ Simply point Curate at your source folder (camera imports, downloads, or that dr
 No cloud uploads. No monthly fees. No AI training on your photos. Just a fast, native app that respects your privacy and gets the job done.`,
     type: "commercial",
     price: {
-      amount: 29,
-      currency: "USD",
+      amount: 2999,
+      currency: "INR",
     },
     techStack: ["Rust", "Tauri", "TypeScript", "React"],
     features: [

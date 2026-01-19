@@ -41,7 +41,7 @@ export function ProductCard({ product }: ProductCardProps) {
             }
           >
             {product.type === "commercial"
-              ? `$${product.price?.amount}`
+              ? `₹${product.price?.amount}`
               : "Open Source"}
           </Badge>
         </div>

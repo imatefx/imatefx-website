@@ -145,7 +145,7 @@ export default function PricingPage() {
             </CardHeader>
             <CardContent className="text-center">
               <div className="mb-8">
-                <span className="text-6xl font-bold">$29</span>
+                <span className="text-6xl font-bold">₹2999</span>
                 <span className="text-muted-foreground ml-2">one-time</span>
               </div>
 
